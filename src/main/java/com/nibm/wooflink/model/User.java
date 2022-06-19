@@ -54,4 +54,8 @@ public class User {
     @JsonIgnore
     private Customer customer;
 
+    @OneToOne(targetEntity = Provider.class, mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Provider provider;
+
 }
