@@ -55,7 +55,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/wooflink-backend:${{ GITHUB_RUN_NUMBER }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/wooflink-backend:${{ env:GITHUB_RUN_NUMBER }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
