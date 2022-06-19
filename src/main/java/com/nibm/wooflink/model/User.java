@@ -37,7 +37,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column()
+    @Column
     private String street;
 
     @Enumerated(EnumType.STRING)
