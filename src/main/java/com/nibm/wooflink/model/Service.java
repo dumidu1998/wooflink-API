@@ -2,6 +2,7 @@ package com.nibm.wooflink.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nibm.wooflink.enums.ServiceType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,50 +17,42 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
-public class Provider {
+public class Service {
     @Id
     @GeneratedValue
     private long id;
 
-
     @Column(nullable = false)
     private String contactNumber;
 
-    @Column(nullable = false)
-    private String shopName;
-
-    @Column(nullable = false)
-    private String longitude;
-
-    @Column(nullable = false)
-    private String latitude;
-
-    @Column(nullable = false)
-    private String about;
-
-    @Column
-    private boolean verified;
-
-    @Column
-    private boolean currentStatus; // for quick close
+    @Enumerated(EnumType.STRING)
+    private ServiceType serviceType;
 
     @Column
     @Temporal(TemporalType.TIME)
     @JsonFormat(pattern = "HH:mm")
-    private Date openTime;
+    private Date startTime;
 
     @Column
     @Temporal(TemporalType.TIME)
     @JsonFormat(pattern = "HH:mm")
-    private Date closeTime;
+    private Date endTime;
 
-    @OneToOne
+    @Column
+    private boolean openAllDay;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column
+    private String description;
+
+    @ManyToOne
     @JsonIgnore
-    private User user;
+    private Provider provider;
 
-    @OneToMany(targetEntity = Service.class, mappedBy = "provider", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Booking.class, mappedBy = "service", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Service> services;
-
+    private Set<Booking> bookings;
 
 }
