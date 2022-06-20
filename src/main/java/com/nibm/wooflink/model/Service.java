@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
@@ -46,6 +47,9 @@ public class Service {
 
     @Column
     private String description;
+
+    @Column(nullable = false, precision = 10,scale = 2)
+    private BigDecimal price;
 
     @ManyToOne
     @JsonIgnore

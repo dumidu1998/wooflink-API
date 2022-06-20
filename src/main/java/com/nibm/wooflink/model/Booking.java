@@ -41,4 +41,8 @@ public class Booking {
     @JsonIgnore
     private Service service;
 
+    @OneToOne(targetEntity = Invoice.class, mappedBy = "invoice", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Invoice invoice;
+
 }
