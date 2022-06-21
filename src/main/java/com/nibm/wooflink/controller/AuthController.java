@@ -42,8 +42,12 @@ public class AuthController {
         String email = signInRequest.getEmail();
         //continue if user exists on provided details
         if (authService.checkIfEmailExists(email)) {
+            try {
             SignInResponse response = authService.login(signInRequest);
             return ResponseEntity.ok(new ResponseWrapper(response, "success", "Login Successfull!!"));
+            }catch (Exception e){
+                return ResponseEntity.badRequest().body(new ResponseWrapper(null, "Failed", "Invalid Password!!"));
+            }
         } else {
             String responseMsg = "UserName or email Invalid";
             return ResponseEntity.badRequest().body(new ResponseWrapper(null, "Failed", responseMsg));
