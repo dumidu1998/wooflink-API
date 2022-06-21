@@ -46,7 +46,7 @@ public class User {
     @CreationTimestamp
     private Date addedDate;
 
-    @OneToOne
+    @ManyToOne
     @JsonIgnore
     private City city;
 

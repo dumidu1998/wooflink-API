@@ -35,7 +35,7 @@ public class Pet {
     @Column
     private int weight;
 
-    @OneToOne
+    @ManyToOne
     @JsonIgnore
-    private User user;
+    private Customer customer;
 }

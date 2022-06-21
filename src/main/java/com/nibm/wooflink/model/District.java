@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +23,7 @@ public class District {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(targetEntity = City.class, mappedBy = "district", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = City.class, mappedBy = "district", cascade = CascadeType.ALL)
     @JsonIgnore
-    private City city;
+    private Set<City> city;
 }

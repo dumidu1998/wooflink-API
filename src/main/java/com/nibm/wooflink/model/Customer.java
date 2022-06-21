@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,4 +30,8 @@ public class Customer {
     @OneToOne
     @JsonIgnore
     private User user;
+
+    @OneToMany(targetEntity = Pet.class, mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Pet> pet;
 }
